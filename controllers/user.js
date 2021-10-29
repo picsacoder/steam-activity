@@ -1,7 +1,9 @@
-const { createCanvas, loadImage } = require('canvas')
+const { createCanvas, loadImage, registerFont } = require('canvas')
 const cheerio = require('cheerio');
 const request = require('request');
 const fs = require("fs");
+registerFont('../Roboto-Regular.ttf', { family: 'Roboto' })
+
 async function scraping(steam_id) { 
     request({
         method: 'GET',
@@ -22,10 +24,21 @@ async function scraping(steam_id) {
         console.log(name.text())
 
 
-        const canvas = createCanvas(1200, 500)
+        const canvas = createCanvas(626, 417)
         const ctx = canvas.getContext('2d')
 
 
+
+
+        ctx.font = '20px "Roboto Regular"'
+        ctx.fillText(name.text(), 250, 35)
+
+        ctx.font = '15px "Roboto Regular"'
+        ctx.fillText(status.text(), 150, 75)
+
+
+        console.log(canvas.toDataURL())
+        
     });
 
 }
