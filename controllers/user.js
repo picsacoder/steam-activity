@@ -34,7 +34,10 @@ async function scraping(steam_id) {
         ctx.font = '15px "Roboto Regular"'
         ctx.fillText(status.text(), 150, 75)
         //console.log(canvas.toDataURL())
-        return canvas.toDataURL();
+        var buf = canvas.toBuffer();
+        fs.writeFileSync(`${steam_id}.png`, buf);
+        //return canvas.toDataURL();
+        
         
     });
 
